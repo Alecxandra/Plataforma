@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  codigo: MyString
+  especialidad: MyString
+  primer_nombre: MyString
+  segundo_nombre: MyString
+  primer_apellido: MyString
+  segundo_apellido: MyString
+
+two:
+  codigo: MyString
+  especialidad: MyString
+  primer_nombre: MyString
+  segundo_nombre: MyString
+  primer_apellido: MyString
+  segundo_apellido: MyString

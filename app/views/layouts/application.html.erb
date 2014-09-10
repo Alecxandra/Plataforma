@@ -7,8 +7,62 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 <%= yield %>
-
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-id">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="#">Aquí ponga como se llama</a>
+    </div>
+    
+    <div class="collapse navbar-collapse" id="navbar-id">
+      <ul class="nav navbar-nav">
+        <li><a>Link 1</a></li>
+      </ul>
+       <ul class="nav navbar-nav">
+        <li><a><spam  class="glyphicon glyphicon-home"></spam> INICIO</a></li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <% unless user_signed_in? %>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown"><spam  class="glyphicon glyphicon-user"></spam> Entra</a>
+          <div class="dropdown-menu pull-right" id="sign_in_form">
+            <%= form_for(:user, url: session_path(:user), html: { class: 'form-horizontal' }) do |f| %>
+            <div class="input-group row">
+              <span class="input-group-addon">@</span>
+              <%= f.text_field :email, class: 'form-control', placeholder: 'Correo' %>    
+            </div>
+            
+            <div class="input-group row">
+              <span class="input-group-addon"><i class="fa fa-key"></i></span>
+              <%= f.password_field :password, class: 'form-control', placeholder: 'Contraseña' %>    
+            </div>
+          
+            <div class="btn-group row">
+              <%= f.submit 'Entrar', class: 'btn btn-primary' %> 
+              <%= link_to "¿Has olvidado tu contraseña?", new_password_path(:user), class: 'btn btn-danger' %>
+            </div>
+            <% end %>
+          </div>  
+        </li>
+        <li class="divider-vertical"></li>
+        <li>
+        <%= link_to  new_user_registration_path do %>
+       <span class="glyphicon glyphicon-pencil"> Regístrate</span>
+      <% end %>
+        </li>
+          <% else %>
+          <li><%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %></li>
+          <% end %>
+      </ul>
+    </div>
+    
+  </div>  
+</nav>
 </body>
 </html>

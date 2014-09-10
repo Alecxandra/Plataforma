@@ -1,0 +1,21 @@
+<%= form_for(@homework_delivery) do |f| %>
+  <% if @homework_delivery.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@homework_delivery.errors.count, "error") %> prohibited this homework_delivery from being saved:</h2>
+
+      <ul>
+      <% @homework_delivery.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :file_path %><br>
+    <%= f.text_field :file_path %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

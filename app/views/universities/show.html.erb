@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @university.nombre %>
+</p>
+
+<p>
+  <strong>Ciudad:</strong>
+  <%= @university.ciudad %>
+</p>
+
+<p>
+  <strong>Direccion:</strong>
+  <%= @university.direccion %>
+</p>
+
+<%= link_to 'Edit', edit_university_path(@university) %> |
+<%= link_to 'Back', universities_path %>
