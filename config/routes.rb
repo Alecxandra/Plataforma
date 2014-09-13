@@ -4,7 +4,7 @@ Rails.application.routes.draw do
  
   resources :homework_deliveries
 
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :teachers
 
   resources :students

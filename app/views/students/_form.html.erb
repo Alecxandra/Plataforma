@@ -1,6 +1,8 @@
-<%= form_for(@student) do |f| %>
-  <% if @student.errors.any? %>
+<%= form_for(@student, html: { class: 'form-horizontal' }) do |f| %>
+  <fieldset>
+    <% if @student.errors.any? %>
     <div id="error_explanation">
+    
       <h2><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h2>
 
       <ul>
@@ -10,24 +12,38 @@
       </ul>
     </div>
   <% end %>
+    
+     <div class="form-group">
+         <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+             <div class="col-md-8">
+               <%= f.text_field :primer_nombre, autofocus: true, id: "primer_nombre", placeholder: "Primer nombre", class: "form-control"%>                  
+              </div>
+     </div>
 
-  <div class="field">
-    <%= f.label :primer_nombre %><br>
-    <%= f.text_field :primer_nombre %>
-  </div>
-  <div class="field">
-    <%= f.label :segundo_nombre %><br>
-    <%= f.text_field :segundo_nombre %>
-  </div>
-  <div class="field">
-    <%= f.label :primer_apellido %><br>
-    <%= f.text_field :primer_apellido %>
-  </div>
-  <div class="field">
-    <%= f.label :segundo_apellido %><br>
-    <%= f.text_field :segundo_apellido %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+       <div class="form-group">
+         <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+             <div class="col-md-8">
+               <%= f.text_field :segundo_nombre , id: "segundo_nombre", placeholder: "Segundo nombre", class: "form-control"%>           
+              </div>
+     </div>
+    
+        <div class="form-group">
+         <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-edit bigicon"></i></span>
+             <div class="col-md-8">
+               <%= f.text_field :primer_apellido , id: "primer_apellido", placeholder: "Primer apellido", class: "form-control"%>           
+              </div>
+     </div>
+    
+      <div class="form-group">
+         <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-edit bigicon"></i></span>
+             <div class="col-md-8">
+               <%= f.text_field :segundo_apellido , id: "segundo_apellido", placeholder: "Segundo apellido", class: "form-control"%>           
+              </div>
+     </div>
+    <br>
+     <div class="col-md-2 col-md-offset-5 actions" >
+   <%= f.submit "Crear cuenta", class:"btn btn-lg btn-success" %>
+       
+      </div> 
+    </fieldset>  
+ <% end %>
