@@ -1,29 +1,29 @@
-<%= form_for(@course) do |f| %>
-  <% if @course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
 
-      <ul>
-      <% @course.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre %>
-  </div>
-  <div class="field">
-    <%= f.label :ano %><br>
-    <%= f.date_select :ano %>
-  </div>
-  <div class="field">
-    <%= f.label :trimestre %><br>
-    <%= f.number_field :trimestre %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= form_for(@course, html: { class: 'form-horizontal' }) do |f| %>
+<fieldset>
+       <div class="form-group">              
+              <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-book bigicon"></i></span>              
+              <div class="col-md-8">
+                <%= f.text_field :nombre, autofocus: true, id: "nombre", placeholder: "Nombre", class: "form-control"%>
+              </div>
+        </div>
+        <div class="form-group">              
+              <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-calendar-o bigicon"></i></span>              
+              <div class="col-md-8">
+                <%= f.number_field :trimestre, id: "trimestre", placeholder: "Trimestre", class: "form-control"%>
+              </div>
+        </div>
+       <div class="form-group">              
+              <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-calendar bigicon"></i></span>              
+              <div class="col-md-8">
+                <%= f.date_select :ano, id: "ano", placeholder: "Año", class: "form-control"%>
+              </div>
+        </div>
+     
+   <br>
+     <div class="col-md-2 col-md-offset-5 actions" >
+       <%= f.submit "Crear clase", class:"btn btn-lg btn-success" %>
+       </div> 
+</fieldset>
 <% end %>

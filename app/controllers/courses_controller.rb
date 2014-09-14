@@ -25,10 +25,10 @@ class CoursesController < ApplicationController
   # POST /courses.json
   def create
     @course = Course.new(course_params)
-
+    @course.teacher_id=Teacher.where(user_id: current_user.id).first.id
     respond_to do |format|
       if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        format.html { redirect_to teachers_path, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new }
@@ -58,6 +58,13 @@ class CoursesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+  
+  def homeworks
+    respond_to do |format|
+      	format.html
+      format.js { render 'show_content', locals: { loadding_partial: 'courses/homeworks' } }
     end
   end
 

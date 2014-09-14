@@ -7,6 +7,11 @@ class HomeworkDeliveriesController < ApplicationController
     @homework_deliveries = HomeworkDelivery.all
   end
 
+  def download_file
+    @homework_deliveries = homework_delivery.find(params[:id])   
+    send_file @homework_deliveries.work.current_path
+  end
+  
   # GET /homework_deliveries/1
   # GET /homework_deliveries/1.json
   def show
@@ -69,6 +74,6 @@ class HomeworkDeliveriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def homework_delivery_params
-      params.require(:homework_delivery).permit(:file_path)
+      params.require(:homework_delivery).permit(:file_path, :)
     end
 end

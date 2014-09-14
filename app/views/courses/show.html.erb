@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
+<style>
+  .jumbotron{
+    
+    margin-bottom:0;
+  }
+</style>  
+<br><br><br>
+<div class="jumbotron">
+  <h1 align="center"><%= @course.nombre %></h1>
+</div>
+<div>
+  <nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">  
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @course.nombre %>
-</p>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><%= link_to 'Tareas', course_homeworks_path(@course), remote: true %></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+  <div class="changed-content">
+  </div>
+</div>  
 
-<p>
-  <strong>Ano:</strong>
-  <%= @course.ano %>
-</p>
-
-<p>
-  <strong>Trimestre:</strong>
-  <%= @course.trimestre %>
-</p>
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>

@@ -19,8 +19,32 @@
     
        <ul class="nav navbar-nav">
         <li><a><spam  class="glyphicon glyphicon-home"></spam> INICIO</a></li>
+         <% if user_signed_in? %>
+           <% if Teacher.where(user_id: current_user.id).first != nil %>
+                <li>  
+               <%= link_to teachers_path do %>
+               <i class="fa fa-book"></i> CLASES
+                  <% end %>
+           <% elsif Student.where(user_id: current_user.id).first != nil %>
+                     <li>  
+                       <%= link_to students_path do %>
+                       <i class="fa fa-book"></i> CLASES
+                          <% end %>
+                    </li>
+           <% end %>
+         <% end %>
       </ul>
+      
       <ul class="nav navbar-nav pull-right">
+          <% if user_signed_in? %>
+           <% if Teacher.where(user_id: current_user.id).first != nil %>
+           <li>  
+             <%= link_to new_course_path do %>
+            <i class="fa fa-plus"></i>
+             <% end %>
+            </li>
+           <% end %>
+         <% end %>
         <% unless user_signed_in? %>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown"><spam  class="glyphicon glyphicon-user"></spam> Entra</a>

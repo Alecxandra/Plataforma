@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
- 
+  # Courses routes
+  get "courses/:course_id/homeworks" => 'course#homeworks', as: 'course_homeworks'
  
  
   resources :homework_deliveries
 
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users
   resources :teachers
 
   resources :students

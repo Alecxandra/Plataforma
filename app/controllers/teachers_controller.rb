@@ -1,10 +1,13 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /teachers
   # GET /teachers.json
   def index
-    @teachers = Teacher.all
+    
+    @courses= Teacher.where(user_id: current_user.id).first.courses
+     
   end
 
   # GET /teachers/1
@@ -25,10 +28,10 @@ class TeachersController < ApplicationController
   # POST /teachers.json
   def create
     @teacher = Teacher.new(teacher_params)
-
+    @teacher.user_id= current_user.id 
     respond_to do |format|
       if @teacher.save
-        format.html { redirect_to @teacher, notice: 'Teacher was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Teacher was successfully created.' }
         format.json { render :show, status: :created, location: @teacher }
       else
         format.html { render :new }
