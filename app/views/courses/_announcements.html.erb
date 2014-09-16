@@ -2,11 +2,22 @@
  <h1 aling="center">Anuncios</h1>
   <br>
   <%= link_to "Crear anuncio", new_course_announcement_path(course), class: "btn btn-success"%>
- <br>
+ <br><br>
+  
+  <% teacher = Teacher.where(user_id: current_user.id).first %>
+  <% student = Student.where(user_id: current_user.id).first %>
   
   <% course.announcements.each do |announcement|%>
      <div class="well well-lg">
-       <%= announcement.user.username %> a las <%= announcement.create_at %>
+       <strong>
+       <% if teacher != nil %>
+         <%= "#{teacher.primer_nombre} #{teacher.primer_apellido}" %>
+       <% else %>
+         <%= "#{student.primer_nombre} #{student.primer_apellido}" %>
+       <% end %>
+         </strong>
+       a las <%= announcement.created_at %>
+       <br>
        <%= announcement.texto%>   
   </div>  
   <% end %>

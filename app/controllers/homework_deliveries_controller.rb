@@ -1,11 +1,21 @@
 class HomeworkDeliveriesController < ApplicationController
   before_action :set_homework_delivery, only: [:show, :edit, :update, :destroy]
-
+  before_action :get_course
+  before_action :get_homework
   # GET /homework_deliveries
   # GET /homework_deliveries.json
   def index
     @homework_deliveries = HomeworkDelivery.all
   end
+  
+  def get_course
+    @course= Course.find(params[:course_id])
+  end
+  
+  def get_homework
+    @homework= Homework.find(params[:homework_id])
+  end
+  
 
   def download_file
     @homework_delivery = HomeworkDelivery.find(params[:id])   
@@ -30,10 +40,11 @@ class HomeworkDeliveriesController < ApplicationController
   # POST /homework_deliveries.json
   def create
     @homework_delivery = HomeworkDelivery.new(homework_delivery_params)
-
+    @homework_delivery.student = Student.where(user_id: current_user.id).first
+    @homework_delivery.homework = @homework
     respond_to do |format|
       if @homework_delivery.save
-        format.html { redirect_to @homework_delivery, notice: 'Homework delivery was successfully created.' }
+        format.html { redirect_to @course, notice: 'Homework delivery was successfully created.' }
         format.json { render :show, status: :created, location: @homework_delivery }
       else
         format.html { render :new }

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get "courses/:course_id/students" => 'courses#students', as: 'course_students'
   get "student/search_course" => 'students#search', as: 'search_course'
   post 'student/enroll' => 'students#enroll', as: 'enroll_student'
-  resources :homework_deliveries
+  
   get 'homework_deliveries/download_file/:id' => 'homework_deliveries#download_file', as: 'download_homework_deliveries'
   
  
@@ -18,7 +18,9 @@ Rails.application.routes.draw do
 
  
   resources :courses do
-    resources :homeworks
+    resources :homeworks do
+      resources :homework_deliveries
+    end
     
     resources :announcements do
        resources :comments
