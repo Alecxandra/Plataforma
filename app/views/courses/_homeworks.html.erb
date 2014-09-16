@@ -1,36 +1,29 @@
 <div style="background-color: #eeeeee;">
   <div class="jumbotron">
   <h1 align="center">Tareas</h1>
-    
-    <%  contador=1 %>
+    <br><br>
+  <div class="col-md-6 col-md-offset-3">  
     <% course.homeworks.each do |homework| %>
-      <% if contador == 1 %>
-        <div class="row">
-          <div class="col-md-3 col-md-offset-1">
-      <% else %>
-        <div class="row">
-          <div class="col-md-3">
-      <% end %>
-             <div class="thumbnail">
-                <div class="caption">
-                  <h3><%= homework.nombre %></h3>
-                  <%= link_to 'Ver', homework, class: "btn btn-primary" %>
-                  
-                </div>
-            </div>
-          </div>
-          <% if contador == 3 %>
-            <% contador = 1 %>
-            </div>
-          <% else %>
-            <% contador = contador + 1 %>
-          <% end %>      
-<% end %>
-            <% if course.homeworks.size % 3 == 0 %>
-              </div>
-            <% end %>
-
-</div>
+    
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= homework.titulo %></h3>
+      </div>
+      <div class="panel-body">
+        <%= homework.descripcion %>
+        <% if Teacher.where(user_id: current_user.id).first != nil %>
+        <br><br>
+        <%= link_to "Ver tareas", "",class: "btn btn-primary"%>
+        <% else %>
+        <br><br>
+        <%= link_to "Entregar tarea", "",class: "btn btn-primary"%>
+        <%  end %>
+      </div>
+    </div>
+    <% end %>
+   </div> 
+    
+   
     
     
   </div>

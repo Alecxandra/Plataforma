@@ -1,12 +1,16 @@
 class AnnouncementsController < ApplicationController
   before_action :set_announcement, only: [:show, :edit, :update, :destroy]
-
+  before_action :get_course
   # GET /announcements
   # GET /announcements.json
   def index
     @announcements = Announcement.all
   end
-
+  
+  def get_course
+    @course= Course.find(params[:course_id])
+  end
+  
   # GET /announcements/1
   # GET /announcements/1.json
   def show
@@ -24,11 +28,12 @@ class AnnouncementsController < ApplicationController
   # POST /announcements
   # POST /announcements.json
   def create
-    @announcement = Announcement.new(announcement_params)
-
+     @announcement = Announcement.new(announcement_params)
+     @announcement.course = @course
+    @announcement.user = current_user
     respond_to do |format|
       if @announcement.save
-        format.html { redirect_to @announcement, notice: 'Announcement was successfully created.' }
+        format.html { redirect_to @course, notice: 'Announcement was successfully created.' }
         format.json { render :show, status: :created, location: @announcement }
       else
         format.html { render :new }

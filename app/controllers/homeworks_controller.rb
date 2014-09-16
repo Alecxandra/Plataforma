@@ -1,12 +1,16 @@
 class HomeworksController < ApplicationController
   before_action :set_homework, only: [:show, :edit, :update, :destroy]
-
+  before_action :get_course
+ 
   # GET /homeworks
   # GET /homeworks.json
   def index
     @homeworks = Homework.all
   end
 
+  def get_course
+    @course = Course.find(params[:course_id])
+ end
   # GET /homeworks/1
   # GET /homeworks/1.json
   def show
@@ -14,7 +18,7 @@ class HomeworksController < ApplicationController
 
   # GET /homeworks/new
   def new
-    @homework = Homework.new
+    @homework =Homework.new
   end
 
   # GET /homeworks/1/edit
@@ -25,12 +29,14 @@ class HomeworksController < ApplicationController
   # POST /homeworks.json
   def create
     @homework = Homework.new(homework_params)
-    @homework.course_id=
-    respond_to do |format|
+    @homework.course = @course
+   respond_to do |format|
       if @homework.save
-        format.html { redirect_to @homework, notice: 'Homework was successfully created.' }
+      
+        format.html { redirect_to @course, notice: 'Homework was successfully created.' }
         format.json { render :show, status: :created, location: @homework }
       else
+       
         format.html { render :new }
         format.json { render json: @homework.errors, status: :unprocessable_entity }
       end
@@ -69,6 +75,6 @@ class HomeworksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def homework_params
-      params.require(:homework).permit(:descripcion, :fecha_asignacion, :fecha_entrega, :nota)
+      params.require(:homework).permit(:descripcion, :fecha_asignacion, :fecha_entrega, :nota,:titulo,:course_id)
     end
 end

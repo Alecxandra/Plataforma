@@ -1,1 +1,26 @@
-<p>Anuncios</p>
+<div class="jumbotron">
+ <h1 aling="center">Anuncios</h1>
+  <br>
+  <%= link_to "Crear anuncio", new_course_announcement_path(course), class: "btn btn-success"%>
+ <br>
+  
+  <% course.announcements.each do |announcement|%>
+     <div class="well well-lg">
+       <%= announcement.user.username %> a las <%= announcement.create_at %>
+       <%= announcement.texto%>   
+  </div>  
+  <% end %>
+
+</div> 
+
+<style>
+    .header {
+        color:#36A0FF;
+        font-size:27px;
+        padding:10px;
+    }
+    .bigicon {
+        font-size:35px;
+        color:#36A0FF;
+    }
+</style>

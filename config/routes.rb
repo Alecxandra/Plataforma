@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   post 'student/enroll' => 'students#enroll', as: 'enroll_student'
   resources :homework_deliveries
   get 'homework_deliveries/download_file/:id' => 'homework_deliveries#download_file', as: 'download_homework_deliveries'
-
   
+ 
   devise_for :users
   resources :teachers
 
@@ -16,18 +16,18 @@ Rails.application.routes.draw do
 
   resources :universities
 
-  resources :courses
-
-  resources :homeworks
-
-  resources :announcements
-
-  resources :comments
-
-  #nested routes
+ 
   resources :courses do
     resources :homeworks
-end
+    
+    resources :announcements do
+       resources :comments
+    end
+  end
+ 
+
+
+ 
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

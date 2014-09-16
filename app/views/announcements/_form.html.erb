@@ -1,21 +1,17 @@
-<%= form_for(@announcement) do |f| %>
-  <% if @announcement.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@announcement.errors.count, "error") %> prohibited this announcement from being saved:</h2>
+<%= form_for([@course,@announcement], html: { class: 'form-horizontal' }) do |f| %>
+<fieldset>
+  <div class="form-group">              
+              <span class="col-md-1 col-md-offset-3 text-center"><i class="fa fa-edit bigicon"></i></span>              
+              <div class="col-md-5">
+                <%= f.text_area :texto, autofocus: true, id: "texto", placeholder: "¿Que estas pensando?", class: "form-control", rows: 4 %>
+              </div>
+        </div>
+  
+ <div class="form-group">
+   <div class="col-md-8 col-md-offset-4" >
+   <%= f.submit "Publicar", class:"btn btn-lg btn-success"  %>
+   </div> 
+  </div>  
+</fieldset>
 
-      <ul>
-      <% @announcement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :texto %><br>
-    <%= f.text_area :texto %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>
