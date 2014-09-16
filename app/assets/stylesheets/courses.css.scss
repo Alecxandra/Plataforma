@@ -1,3 +1,24 @@
 // Place all the styles related to the Courses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#jum{
+  background-image: url('clase3.jpg');
+  #titulo{
+    color: #D9D2D2;
+    text-shadow: 3px 0px 1px rgba(86, 86, 86, 1);
+  }  
+}
+
+
+#barrita{
+  background-color: rgba(67,44,131,0.9);
+  .navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+}  

@@ -1,5 +1,6 @@
-<%= form_for(@homework) do |f| %>
-  <% if @homework.errors.any? %>
+<%= form_for(@homework, html: { class: 'form-horizontal' }) do |f| %>
+<fieldset>
+<% if @homework.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@homework.errors.count, "error") %> prohibited this homework from being saved:</h2>
 
@@ -10,24 +11,46 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :descripcion %><br>
-    <%= f.text_area :descripcion %>
-  </div>
-  <div class="field">
-    <%= f.label :fecha_asignacion %><br>
-    <%= f.datetime_select :fecha_asignacion %>
-  </div>
-  <div class="field">
-    <%= f.label :fecha_entrega %><br>
-    <%= f.datetime_select :fecha_entrega %>
-  </div>
-  <div class="field">
-    <%= f.label :nota %><br>
-    <%= f.text_field :nota %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
+ <div class="form-group">
+   <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-file-text-o bigicon"></i></span>
+       <div class="col-md-8">
+         <%= f.text_field :titulo, autofocus: true, id: "titulo", placeholder: "Titulo", class: "form-control"%>          </div>
+</div>
+  
+ 
+<div class="form-group">
+   <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-edit bigicon"></i></span>
+       <div class="col-md-8">
+         <%= f.text_area :descripcion, id: "descripcion", placeholder: "Descripcion", class: "form-control"%>          </div>
+</div> 
+  
+ <div class="form-group">
+   <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-calendar bigicon"></i></span>
+       <div class="col-md-8">
+         <%= f.label :fecha_asignacion %>:
+         <%= f.datetime_select :fecha_asignacion, id: "fecha_asignacion", placeholder: "Fecha asignacion", class: "form-control"%>         
+      </div>
+</div>
+  
+  <div class="form-group">
+   <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-calendar bigicon"></i></span>
+       <div class="col-md-8">
+         <%= f.label :fecha_entrega %>:
+         <%= f.datetime_select :fecha_entrega, id: "fecha_entrega", placeholder: "Fecha de entrega", class: "form-control"%>         
+      </div>
+</div>
+  
+    <div class="form-group">
+   <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-check-square bigicon"></i></span>
+       <div class="col-md-8">
+         <%= f.text_field :nota, id: "puntos", placeholder: "Puntos", class: "form-control"%>         
+      </div>
+</div>
+  <br>
+   <div class="col-md-2 col-md-offset-5 actions" >
+     <%= f.submit "Crear tarea", class:"btn btn-lg btn-success" %>
+       
+      </div> 
+</fieldset>
 <% end %>

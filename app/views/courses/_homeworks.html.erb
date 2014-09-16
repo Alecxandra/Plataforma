@@ -1,1 +1,36 @@
-<p>WIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII</p>
+<div style="background-color: #eeeeee;">
+  <div class="jumbotron">
+  <h1 align="center">Tareas</h1>
+    
+    <%  contador=1 %>
+    <% course.homeworks.each do |homework| %>
+      <% if contador == 1 %>
+        <div class="row">
+          <div class="col-md-3 col-md-offset-1">
+      <% else %>
+        <div class="row">
+          <div class="col-md-3">
+      <% end %>
+             <div class="thumbnail">
+                <div class="caption">
+                  <h3><%= homework.nombre %></h3>
+                  <%= link_to 'Ver', homework, class: "btn btn-primary" %>
+                  
+                </div>
+            </div>
+          </div>
+          <% if contador == 3 %>
+            <% contador = 1 %>
+            </div>
+          <% else %>
+            <% contador = contador + 1 %>
+          <% end %>      
+<% end %>
+            <% if course.homeworks.size % 3 == 0 %>
+              </div>
+            <% end %>
+
+</div>
+    
+    
+  </div>

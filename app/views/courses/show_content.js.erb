@@ -1,5 +1,6 @@
 $('.changed-content').fadeOut(500, function() {
 	$('.changed-content').empty();
-	$('.changed-content').append('<%= j render partial: loadding_partial %>');
+	$('.changed-content').append('<%= j render partial: loadding_partial, locals: { course: course } %>');
 });
 $('.changed-content').fadeIn();
+

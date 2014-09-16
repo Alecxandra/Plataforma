@@ -25,7 +25,7 @@ class HomeworksController < ApplicationController
   # POST /homeworks.json
   def create
     @homework = Homework.new(homework_params)
-
+    @homework.course_id=
     respond_to do |format|
       if @homework.save
         format.html { redirect_to @homework, notice: 'Homework was successfully created.' }

@@ -62,9 +62,26 @@ class CoursesController < ApplicationController
   end
   
   def homeworks
+    @course = Course.find_by_id(params[:course_id])
     respond_to do |format|
-      	format.html
-      format.js { render 'show_content', locals: { loadding_partial: 'courses/homeworks' } }
+      format.html
+      format.js { render 'show_content', locals: { loadding_partial: 'courses/homeworks', course: @course } }
+    end
+  end
+  
+  def announcements
+    @course = Course.find_by_id(params[:course_id])
+    respond_to do |format|
+      format.html
+      format.js { render 'show_content', locals: { loadding_partial: 'courses/announcements', course: @course } }
+    end
+  end
+  
+  def students
+    @course = Course.find_by_id(params[:course_id])
+    respond_to do |format|
+      format.html
+      format.js { render 'show_content', locals: { loadding_partial: 'courses/students', course: @course } }
     end
   end
 
@@ -76,6 +93,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:nombre, :ano, :trimestre)
+      params.require(:course).permit(:nombre, :ano, :trimestre, :codigo)
     end
 end

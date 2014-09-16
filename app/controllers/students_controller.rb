@@ -7,12 +7,33 @@ class StudentsController < ApplicationController
   def index
     @courses= Student.where(user_id: current_user.id).first.courses
   end
-
+  
+   
   # GET /students/1
   # GET /students/1.json
   def show
   end
 
+  def search
+  
+  end
+   
+  def enroll 
+    @course = Course.where(codigo: params[:course_code]).first
+    @student = Student.where(user_id: current_user.id).first
+    @course.students << @student
+   
+    respond_to do |format|
+       if @course.save
+         format.html { redirect_to students_path, notice: 'St udent was successfully created.' }
+          format.json { render :show, status: :created, location: @student }
+      else
+        format.html { render :new }
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+      end
+    end
+ end
+  
   # GET /students/new
   def new
     @student = Student.new

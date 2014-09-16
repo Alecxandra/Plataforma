@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top nav-black">
   <div class="container-fluid">
     <div class="navbar-header">
       <%= image_tag("Imagen6.png", size: "55x55", id: 'brand-logo') %>
@@ -38,10 +38,16 @@
       <ul class="nav navbar-nav pull-right">
           <% if user_signed_in? %>
            <% if Teacher.where(user_id: current_user.id).first != nil %>
-           <li>  
-             <%= link_to new_course_path do %>
-            <i class="fa fa-plus"></i>
-             <% end %>
+              <li>  
+               <%= link_to new_course_path do %>
+                    <i class="fa fa-plus"></i>
+               <% end %>
+           <% elsif Student.where(user_id: current_user.id).first != nil %>
+                <li>  
+                   <%= link_to search_course_path do %>
+                      <i class="fa fa-plus"></i>
+                   <% end %>
+                     
             </li>
            <% end %>
          <% end %>

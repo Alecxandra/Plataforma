@@ -5,22 +5,41 @@
   }
 </style>  
 <br><br><br>
-<div class="jumbotron">
-  <h1 align="center"><%= @course.nombre %></h1>
+<div class="jumbotron" id="jum">
+  <h1 align="center" id="titulo"><%= @course.nombre %></h1>
+  <h1 align="center"> <%= @course.codigo %></h1>
 </div>
 <div>
-  <nav class="navbar navbar-default" role="navigation">
+  <nav class="navbar navbar-default" id="barrita" role="navigation" >
   <div class="container-fluid">  
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'Tareas', course_homeworks_path(@course), remote: true %></li>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"  >
+      <ul class="nav navbar-nav" >
+        <li>
+          <%= link_to course_homeworks_path(@course), remote: true do%>
+           <i class="fa fa-file-code-o"></i> TAREAS
+          <% end%>
+        </li>  
+        <li>
+          <%= link_to course_announcements_path(@course), remote: true do%>
+           <i class="fa fa-bullhorn"></i> ANUNCIOS
+          <% end%>
+        </li>
+        <li>
+          <%= link_to course_students_path(@course), remote: true do%>
+           <i class="fa fa-group"></i> ALUMNOS
+          <% end%>
+        </li>
       </ul>
+      <ul class="nav navbar-nav pull-right">
+        <%= link_to new_homework_path do %>
+            <i class="fa fa-plus"></i>
+             <% end %>
+      </ul> 
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
   <div class="changed-content">
   </div>
-</div>  
-
+</div> 

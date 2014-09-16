@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
   # Courses routes
-  get "courses/:course_id/homeworks" => 'course#homeworks', as: 'course_homeworks'
- 
- 
+  get "courses/:course_id/homeworks" => 'courses#homeworks', as: 'course_homeworks'
+  get "courses/:course_id/announcements" => 'courses#announcements', as: 'course_announcements'
+  get "courses/:course_id/students" => 'courses#students', as: 'course_students'
+  get "student/search_course" => 'students#search', as: 'search_course'
+  post 'student/enroll' => 'students#enroll', as: 'enroll_student'
   resources :homework_deliveries
+  get 'homework_deliveries/download_file/:id' => 'homework_deliveries#download_file', as: 'download_homework_deliveries'
 
+  
   devise_for :users
   resources :teachers
 
@@ -20,6 +24,10 @@ Rails.application.routes.draw do
 
   resources :comments
 
+  #nested routes
+  resources :courses do
+    resources :homeworks
+end
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
