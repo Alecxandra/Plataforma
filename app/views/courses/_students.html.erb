@@ -1,1 +1,32 @@
-<p>Estudiantes</p>
+<style>
+  thead th {
+  background-color: #00C12B;
+ 
+}
+
+ </style> 
+
+<br>
+<div class="jumbotron">
+  <h1 align="center"> Estudiantes</h1>
+<br>
+ 
+  <div class="col-md-8 col-md-offset-2">
+  <table class="table table-striped ">
+    <thead>
+       <th>Nombre</th>
+    </thead>  
+     <tbody>
+       <% course.students.each do |student|%>
+       <tr>
+         <td>
+  
+    <%= "#{student.primer_nombre} #{student.segundo_nombre} #{student.primer_apellido} #{student.segundo_apellido}" %>
+       
+           </td>
+         </tr>
+       <% end%>
+    </tbody>
+    </table>
+    </div>
+</div> 

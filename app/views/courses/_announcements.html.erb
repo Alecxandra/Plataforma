@@ -18,7 +18,32 @@
          </strong>
        a las <%= announcement.created_at %>
        <br>
-       <%= announcement.texto%>   
+       <%= announcement.texto%><br>
+       <%= render partial: "comments/form", locals:{course: course, announcement: announcement, comment: Comment.new}%>
+          <ul class="media-list">
+       <% announcement.comments.each do |comment| %>
+            <% teacher = Teacher.where(user_id: comment.user_id).first %>
+            <% student = Student.where(user_id: comment.user_id).first %>
+          <li class="media">
+               <div class="media-body">
+                 <h4 class="media-heading">
+                 <strong>
+           <% if teacher != nil %>
+             <%= "#{teacher.primer_nombre} #{teacher.primer_apellido}" %>
+           <% else %>
+             <%= "#{student.primer_nombre} #{student.primer_apellido}" %>
+           <% end %>
+         </strong>
+                   a las <%= comment.created_at %>
+       
+                 </h4>
+                 <%= comment.texto %>
+                </div>
+  
+            </li>
+       <% end %>
+         </ul>   
+     
   </div>  
   <% end %>
 

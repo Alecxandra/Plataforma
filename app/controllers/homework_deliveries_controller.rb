@@ -1,7 +1,7 @@
 class HomeworkDeliveriesController < ApplicationController
   before_action :set_homework_delivery, only: [:show, :edit, :update, :destroy]
-  before_action :get_course
-  before_action :get_homework
+  before_action :get_course, except: [:download_file]
+  before_action :get_homework, except: [:download_file]
   # GET /homework_deliveries
   # GET /homework_deliveries.json
   def index
@@ -58,13 +58,13 @@ class HomeworkDeliveriesController < ApplicationController
   def update
     respond_to do |format|
       if @homework_delivery.update(homework_delivery_params)
-        format.html { redirect_to @homework_delivery, notice: 'Homework delivery was successfully updated.' }
+        format.html { redirect_to course_homework_homework_deliveries_path(@course,@homework), notice: 'Homework delivery was successfully updated.' }
         format.json { render :show, status: :ok, location: @homework_delivery }
       else
         format.html { render :edit }
         format.json { render json: @homework_delivery.errors, status: :unprocessable_entity }
       end
-    end
+    end  
   end
 
   # DELETE /homework_deliveries/1
@@ -85,6 +85,7 @@ class HomeworkDeliveriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def homework_delivery_params
-      params.require(:homework_delivery).permit(:file_path, :work)
+      params.require(:homework_delivery).permit(:file_path, :work, :nota)
     end
+  
 end

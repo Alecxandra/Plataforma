@@ -13,7 +13,7 @@
         <%= homework.descripcion %>
         <% if Teacher.where(user_id: current_user.id).first != nil %>
         <br><br>
-        <%= link_to "Ver tareas", "",class: "btn btn-primary"%>
+        <%= link_to "Ver tareas", course_homework_homework_deliveries_path(course,homework),class: "btn btn-primary"%>
         <% else %>
         <br><br>
         <%= link_to "Entregar tarea", new_course_homework_homework_delivery_path(course,homework),class: "btn btn-primary"%>

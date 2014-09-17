@@ -6,8 +6,8 @@
 </style>  
 <br><br><br>
 <div class="jumbotron" id="jum">
-  <h1 align="center" id="titulo"><%= @course.nombre %></h1>
-  <h2 align="center"> <%= @course.codigo %></h2>
+  <h1 align="center" id="titulo" style="color:white;text-shadow: 3px 3px 1px rgba(51, 48, 48, 1);"><%= @course.nombre %></h1>
+  <h2 align="center"  style="color:white;text-shadow: 3px 3px 1px rgba(51, 48, 48, 1);"> <%= @course.codigo %></h2>
 </div>
 <div>
   <nav class="navbar navbar-default" id="barrita" role="navigation" >
@@ -17,17 +17,17 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"  >
       <ul class="nav navbar-nav" >
         <li>
-          <%= link_to course_homeworks_path(@course), remote: true do%>
+          <%= link_to course_homeworks_path(@course),style:"color:white", remote: true do%>
            <i class="fa fa-file-code-o"></i> TAREAS
           <% end%>
         </li>  
         <li>
-          <%= link_to course_announcements_path(@course), remote: true do%>
+          <%= link_to course_announcements_path(@course),style:"color:white", remote: true, id: "anno-link" do%>
            <i class="fa fa-bullhorn"></i> ANUNCIOS
           <% end%>
         </li>
         <li>
-          <%= link_to course_students_path(@course), remote: true do%>
+          <%= link_to course_students_path(@course),style:"color:white", remote: true do%>
            <i class="fa fa-group"></i> ALUMNOS
           <% end%>
         </li>
@@ -36,7 +36,7 @@
         <% if Teacher.where(user_id: current_user.id).first != nil %>
         <li>
         <%= link_to new_course_homework_path(@course) do %>
-            <i class="fa fa-plus"></i>
+            <i class="fa fa-plus" style="color:white"></i>
              <% end %>
         </li>  
         <%  end %>

@@ -1,27 +1,61 @@
-
+<style>
+.carousel-caption {
+    top: 30%;
+    bottom: auto;
+}
+  </style>
 
 <div id="carousel-example" class="carousel slide" data-ride="carousel">
 
   <div class="carousel-inner" >
     <div class="item active" >
 
-      <%= image_tag 'manzana.png' %>
-      <div class="carousel-caption" >
-        <%= link_to 'Entra como maestro', new_teacher_path, class: "btn btn-success" %>
+      <%= image_tag 'tizas.png' %>
+      <div class="carousel-caption" style="font-size:440%">
+      <table align="center">
+         <tr>
+          <td>
+            <%= image_tag 'Imagen6.png', size:"180x180" %>
+           </td>
+           <td>Bienvenidos a Rails Room</td>
+          <tr> 
+        </table>  
+      
+      </div>
+    </div>
+    <div class="item">
+      <%= image_tag 'manos.png' %>
+      <div class="carousel-caption "  style="font-size:300%;top: 20%;
+    bottom: auto;">
+           <table align="center">
+         <tr>
+          <td>
+            <%= image_tag 'Imagen2.png', size:"100x100" %>
+            <%= image_tag 'Imagen5.png', size:"100x100" %>
+            <%= image_tag 'Imagen8.png', size:"100x100" %>
+           </td>
+           <td><p>Lleva tus clases contigo</p>
+           <p>Rails Room te da la facilidad de entrar a tus clases desde cualquier lugar</p>
+           </td>
+          <tr> 
+        </table>  
+      </div>
+    </div>
+    <div class="item">
+      <%= image_tag 'manzana.png'%>
+      <div class="carousel-caption "  style="font-size:450%">
+        <table align="center">
+         <tr>
+          <td>
+            <%= image_tag 'Imagen1.png', size:"180x180" %>
+           </td>
+           <td>Registrate</td>
+          <tr> 
+        </table>  
+        
+          <%= link_to 'Entra como maestro', new_teacher_path, class: "btn btn-success" %>
         <%= link_to 'Entra como alumno', new_student_path, class: "btn btn-primary" %>
-      </div>
-    </div>
-    <div class="item">
-      <%= image_tag 'education2.png' %>
-      <div class="carousel-caption ">
-
-      </div>
-    </div>
-    <div class="item">
-      <%= image_tag 'tizas.png'%>
-      <div class="carousel-caption ">
-
-      </div>
+        </div>
     </div>
 
     <div class="item">

@@ -1,0 +1,9 @@
+<%= form_for([course, homework, homework_delivery]) do |f| %>
+<div class="col-md-3">    
+<%= f.text_field :nota, class: "form-control", value: homework_delivery.nota %> 
+</div>
+  <%= f.submit "Guardar", class: "btn btn-success" %>
+    
+   <% end %>
+
+

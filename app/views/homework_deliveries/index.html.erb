@@ -1,25 +1,39 @@
-<h1>Listing homework_deliveries</h1>
+<style>
+  thead th {
+  background-color: #6C8CD5;
+ 
+}
 
-<table>
-  <thead>
+ </style> 
+<br><br>
+<div class="jumbotron">
+<h1 align="center"> Tareas Entregadas</h1>
+  <br><br>
+<div class="col-md-8 col-md-offset-2">
+  <table class="table table-striped ">
+  <thead >
+     <th>Nombre</th>
+    <th>Tarea</th>
+    <th>Nota</th>  
+    </thead>
+    
+    <tbody>
+       <% @homework.homework_deliveries.each do |homework_delivery|%>
+  <% student = Student.where(id: homework_delivery.student_id).first %> 
     <tr>
-      <th>File path</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @homework_deliveries.each do |homework_delivery| %>
-      <tr>
-        <td><%= homework_delivery.file_path %></td>
-        <td><%= link_to 'Show', homework_delivery %></td>
-        <td><%= link_to 'Edit', edit_homework_delivery_path(homework_delivery) %></td>
-        <td><%= link_to 'Destroy', homework_delivery, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td> <%= "#{student.primer_nombre} #{student.segundo_nombre} #{student.primer_apellido} #{student.segundo_apellido}" %></td> 
+    <td>  <%= link_to 'Descargar tarea', download_homework_deliveries_path(@course,@homework,homework_delivery) %></td> 
+      <td> <%= render partial: 'homework_deliveries/form_change_grade', locals: {course: @course, homework: @homework, homework_delivery: homework_delivery } %>
+        
+      </td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+   <% end %>
+      </tbody>
+  </table>  
+</div>
+</div>
 
-<br>
 
-<%= link_to 'New Homework delivery', new_homework_delivery_path %>
+
+
+

@@ -1,12 +1,20 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-
+  before_action :get_course
+  before_action :get_announcement
   # GET /comments
   # GET /comments.json
   def index
     @comments = Comment.all
   end
+  
+  def get_course
+    @course = Course.find(params[:course_id])
+  end
 
+  def get_announcement
+    @announcement= Announcement.find(params[:announcement_id])    
+  end
   # GET /comments/1
   # GET /comments/1.json
   def show
@@ -25,11 +33,12 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
-
+    @comment.announcement= @announcement
+    @comment.user = current_user
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
+        format.html
+        format.js { render 'show_comment'}
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
